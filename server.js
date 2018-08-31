@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs=require('fs');
+const port=process.env.PORT || 3000;
 var app=express();
 hbs.registerPartials(__dirname+'/views/partials')    //to inject repeated tags and data in hbsx
 app.set('view engine','hbs');
@@ -20,10 +21,10 @@ fs.appendFile('server.log',log+'\n',(err)=>{
 })
   next();
 });
-app.use((req,resp,next)=>{
-resp.render('maintainance.hbs');}
-
-);
+// app.use((req,resp,next)=>{
+// resp.render('maintainance.hbs');}              //used to get constat pages
+//
+// );
 hbs.registerHelper('screamIt',(text)=>{
   return text.toUpperCase()
 });
@@ -50,6 +51,6 @@ app.get('/bad',(req,resp)=>{
     error:'Not found'
   });
 });
-app.listen(3000, ()=>{
-  console.log('Server is up on port 3000');
+app.listen(port, ()=>{
+  console.log(`Server is up on port ${port}`);
 });
