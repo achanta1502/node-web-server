@@ -46,6 +46,11 @@ app.get('/about',(req,resp)=>{
 
   });
 });
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    pageTitle:'Projects'
+  });
+});
 app.get('/bad',(req,resp)=>{
   resp.send({
     error:'Not found'
